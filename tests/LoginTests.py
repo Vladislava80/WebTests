@@ -61,6 +61,7 @@ def test_go_to_register_page(browser):
 
 
 # не успевает открыть? тормозит интеграция с vk?
+@allure.title('Вход через VK')
 def test_enter_vk_id(browser):
     BasePage(browser).get_url(BASE_URL)
     login_page = LoginPageHelper(browser)
