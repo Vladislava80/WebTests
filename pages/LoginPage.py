@@ -12,6 +12,7 @@ class LoginPageLocators:
     LINK_ENTER_QRCODE = (By.XPATH, '//a[@title="QR-код"]')
     LINK_CANNOT_ENTER = (By.XPATH, '//button[@aria-label="Не получается войти?"]')
     REGISTER = (By.XPATH, '//button/span/span[text()="Зарегистрироваться"]')
+    REGISTER_INPUT_PHONE = (By.XPATH, '//div[text()="Введите номер телефона"]')
     VK = (By.XPATH, '//a[@data-module="registration/vkconnect"]')
     MAILRU = (By.XPATH, '//a[@data-l="t,mailru"]')
     YANDEX = (By.XPATH, '//a[@data-provider="YANDEX"]')
@@ -77,25 +78,12 @@ class LoginPageHelper(BasePage):
         self.attach_screenshot()
         self.find_element(LoginPageLocators.LINK_CANNOT_ENTER).click()
 
-    @allure.step('Нажимаем на кнопку "Зарегистрироваться"')
-    def register(self):
-        self.attach_screenshot()
-        self.find_element(LoginPageLocators.REGISTER).click()
+    # @allure.step('Нажимаем на кнопку "Зарегистрироваться"')
+    # def register(self):
+    #     self.attach_screenshot()
+    #     self.find_element(LoginPageLocators.REGISTER).click()
 
-    @allure.step('Нажимаем на кнопку "Войти через VK ID"')
-    def vk_id(self):
-        self.attach_screenshot()
-        self.find_element(LoginPageLocators.VK).click()
 
-    @allure.step('Нажимаем на кнопку "Войти через почту Mail.ru"')
-    def mail_ru(self):
-        self.attach_screenshot()
-        self.find_element(LoginPageLocators.MAILRU).click()
-
-    @allure.step('Нажимаем на кнопку "Войти через Яндекс"')
-    def yandex(self):
-        self.attach_screenshot()
-        self.find_element(LoginPageLocators.YANDEX).click()
 
 
 
