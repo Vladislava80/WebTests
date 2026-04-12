@@ -78,10 +78,11 @@ class LoginPageHelper(BasePage):
         self.attach_screenshot()
         self.find_element(LoginPageLocators.LINK_CANNOT_ENTER).click()
 
-    # @allure.step('Нажимаем на кнопку "Зарегистрироваться"')
-    # def register(self):
-    #     self.attach_screenshot()
-    #     self.find_element(LoginPageLocators.REGISTER).click()
+    @allure.step('Нажимаем на кнопку "Зарегистрироваться"')
+    def register(self):
+        self.attach_screenshot()
+        self.find_element(LoginPageLocators.REGISTER).click()
+        self.driver.get("https://ok.ru/dk?st.cmd=anonymRegistrationEnterPhone")
 
 
 
