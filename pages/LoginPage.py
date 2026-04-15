@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 import allure
 
 class LoginPageLocators:
-    ENTER_BUTTON = (By.XPATH, '//button[@label="Войти"]')
+    ENTER_BUTTON = (By.XPATH, '//*[@data-test-id="enter-action"]')
     ENTER_QRCODE_BUTTON = (By.XPATH, '//button[@label="Войти по QR-коду"]')
     LOGIN_FIELD = (By.ID, "field_email")
     PASSWORD_FIELD = (By.ID, "field_password")
@@ -20,6 +20,8 @@ class LoginPageLocators:
     ERROR_PASSWORD = (By.XPATH, '//div/span[text()="Введите пароль"]')
     RECOVERY = (By.XPATH, "//div[text()='Восстановление доступа']")
     QR_CODE_IMAGE = (By.XPATH, "//div/img[@class ='qr_code_image']")
+    RECOVERY_ACCESS = (By.XPATH, "//*[text()='Восстановить']")
+    CANCEL = (By.XPATH, "//button/span/span[text()='Отмена']")
 
 
 class LoginPageHelper(BasePage):
@@ -29,6 +31,8 @@ class LoginPageHelper(BasePage):
 
 
     def check_page(self):
+        with allure.step('Проверяем корректность загрузки страницы'):
+            self.attach_screenshot()
         self.find_element(LoginPageLocators.ENTER_BUTTON)
         self.find_element(LoginPageLocators.ENTER_QRCODE_BUTTON)
         self.find_element(LoginPageLocators.LOGIN_FIELD)
@@ -54,9 +58,14 @@ class LoginPageHelper(BasePage):
         self.find_element(LoginPageLocators.LINK_ENTER_QRCODE).click()
 
     @allure.step('Заполняем поле логина')
-    def fill_login_field(self):
+    def fill_login_field(self, login):
+        self.find_element(LoginPageLocators.LOGIN_FIELD).send_keys(login)
         self.attach_screenshot()
-        self.find_element(LoginPageLocators.LOGIN_FIELD).send_keys("Romashka")
+
+    @allure.step('Заполняем поле пароля')
+    def fill_password_field(self, password):
+        self.find_element(LoginPageLocators.PASSWORD_FIELD).send_keys(password)
+        self.attach_screenshot()
 
     @allure.step('Получаем текст ошибки')
     def get_error_text_login(self):
@@ -83,6 +92,11 @@ class LoginPageHelper(BasePage):
         self.attach_screenshot()
         self.find_element(LoginPageLocators.REGISTER).click()
         self.driver.get("https://ok.ru/dk?st.cmd=anonymRegistrationEnterPhone")
+
+    @allure.step('Переходим к восстановлению')
+    def click_recovery(self):
+        self.attach_screenshot()
+        self.find_element(LoginPageLocators.RECOVERY_ACCESS).click()
 
 
 
