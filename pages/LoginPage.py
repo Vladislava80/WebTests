@@ -2,6 +2,9 @@ from pages.BasePage import BasePage
 from selenium.webdriver.common.by import By
 import allure
 
+from pages.RegistrationPage import RegistrationPageLocators
+
+
 class LoginPageLocators:
     ENTER_BUTTON = (By.XPATH, '//*[@data-test-id="enter-action"]')
     ENTER_QRCODE_BUTTON = (By.XPATH, '//button[@label="Войти по QR-коду"]')
@@ -97,8 +100,3 @@ class LoginPageHelper(BasePage):
     def click_recovery(self):
         self.attach_screenshot()
         self.find_element(LoginPageLocators.RECOVERY_ACCESS).click()
-
-
-
-
-
