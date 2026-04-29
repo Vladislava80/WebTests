@@ -1,4 +1,4 @@
-from pages.BasePage import BasePage
+from pages.BasePage import BasePageHelper
 from selenium.webdriver.common.by import By
 import allure
 
@@ -8,7 +8,7 @@ class RecoveryPageLocators:
     QR_CODE_BUTTON = (By.XPATH, '//img[@class="qr_code_image"]')
     SUPPORT_BUTTON = (By.XPATH, '//div[@class="support-link_items"]')
 
-class RecoveryPageHelper(BasePage):
+class RecoveryPageHelper(BasePageHelper):
     def __init__(self, driver):
         self.driver = driver
         self.check_page()
